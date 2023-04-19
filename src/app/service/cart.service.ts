@@ -12,28 +12,39 @@ export class CartService {
   constructor() { }
   getProducts(){
     this.productList.asObservable();
-
+     
   }
 
   setProduct(product : any){
     this.cartItemList.push(...product);
     this.productList.next(product);
-
   }
-  addtoCart(product:any){
-    this.cartItemList.push(product);
-    this.productList.next(this.cartItemList);
-    this.getTotalPrice();
-    // console.log(this.cartItemList);
+  // addtooCart(product:any){
+  //   console.log("Product from product page",product);
     
+  //   this.cartItemList.push(product);
+  //   // console.log("product",product);
+  //   console.log("cartService item list ", this.cartItemList);
+  //   return this.cartItemList;
+  // }
 
 
-  }
-  getTotalPrice(){
+
+addtooCart(product:any){
+  
+    this.cartItemList.push(product);
+    // this.productList.next(this.cartItemList);
+    console.log("service product",this.cartItemList);
+    // console.log("product list from service file",this.productList);
+    
+    return this.cartItemList;
+}
+  getTotalPrice(): number{
     let grandTotal = 0;
     this.cartItemList.map((a:any)=>{
       grandTotal+=a.total;
     })
+    return grandTotal;
   }
   removeCartitem(product:any){
     this.cartItemList.map((a:any,index:any)=>{
@@ -49,3 +60,7 @@ export class CartService {
     this.cartItemList.next(this.cartItemList);
   }
 }
+function setItem(product: any, cartItemList: any) {
+  throw new Error('Function not implemented.');
+}
+

@@ -46,25 +46,21 @@
 //   }
 // }
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/service/cart.service'; // import the service
-
+import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/service/api.service';
+import { CartService } from 'src/app/service/cart.service'; 
 @Component({
-  selector: 'app-my-component',
-  templateUrl: './my-component.component.html',
-  styleUrls: ['./my-component.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
-export class MyComponent implements OnInit {
-
+export class HeaderComponent implements OnInit {
   totalItem: number = 0;
-
-  constructor(private cartService: CartService) { } // define the service in the constructor
-  ngOnInit(): void {
-    this.cartService.getProducts()
-      .subscribe((res: any[]) => {
-        console.log('Response:', res);
-        this.totalItem = res.length;
+  constructor(private apiService : ApiService) { } 
+  ngOnInit(){
+    this.apiService.getProduct()
+      .subscribe((res: any) => {
+        console.log(res);
       });
   }
-  
-  
 }

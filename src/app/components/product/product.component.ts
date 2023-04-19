@@ -30,7 +30,8 @@ ngOnInit(): void{
 }
 
 addtocart(item : any){
-this.cartService.addtoCart(item);
+this.cartService.addtooCart(item);
+
 
 }
 }
